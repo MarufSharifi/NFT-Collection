@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -50,8 +50,8 @@ contract CryptoDevs is ERC721Enumerable, Ownable {
         _safeMint(msg.sender, tokenIds);
     }
 
-    function mint() public payable onlyWhenNotPaused {
-        require(presaleStarted && block.timestamp >=  presaleEnded, "Presale has not ended yet");
+    function mint() public payable OnlyWhenNotPaused {
+        require(presalesStarted && block.timestamp >=  presalesEnded, "Presale has not ended yet");
         require(tokenIds < maxTokenIds, "Exceed maximum Crypto Devs supply");
         require(msg.value >= _price, "Ether sent is not correct");
         tokenIds += 1;
@@ -59,7 +59,7 @@ contract CryptoDevs is ERC721Enumerable, Ownable {
     }
 
     function _baseURI() internal view virtual override returns (string memory) {
-        return _baseTokenURI;
+        return _baseTokenUrI;
     }
 
       function setPaused(bool val) public onlyOwner {
